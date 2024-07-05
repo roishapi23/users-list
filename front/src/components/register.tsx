@@ -45,7 +45,7 @@ export const Register = () => {
                     <FormInput name={"password"} label={"Password"} type="password" rules={[requiredValidation, { min: 5, message: "Password must have at least 5 characters " }]} />
 
                     <Button type="primary" htmlType="submit">
-                        Save
+                        Register and enter
                     </Button>
                 </Flex>
             </Form>

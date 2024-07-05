@@ -29,7 +29,7 @@ const useAxios = () => {
     (error: AxiosError) => {
       // handle server errors for all the requests
       if (error?.response?.status === HttpStatusCode.Unauthorized) {
-        message.error("Please log in first !", 5);
+        message.error("Please register first !", 5);
         return navigate("/register");
       } else {
         message.error("Somthing went wrong !", 5);

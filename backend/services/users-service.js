@@ -48,7 +48,9 @@ const getUsers = async (page) => {
 
   // save in cache
   cache.set(cacheKey, newCache);
-  return res;
+
+  let pageUsers = newCache.data.filter((c) => c.page == page);
+  return { ...newCache, data: pageUsers };
 };
 
 const getUser = async (userId) => {
@@ -118,6 +120,7 @@ const deleteUser = async (userId) => {
   // get users from cache
   const cachedData = cache.get(cacheKey);
   if (cachedData) {
+    let userPage = cachedData.data.find((u) => u.id == userId).page;
     let userIndex = cachedData.data.findIndex((u) => u.id == userId);
     if (userIndex != -1) {
       // remove user from cache
@@ -130,6 +133,21 @@ const deleteUser = async (userId) => {
         cachedData.total_pages > 1
       ) {
         cachedData.total_pages--;
+      }
+
+      // if cached data is has less users then a page should display - fetch the next page data
+      // and complete the missing users amount for the page
+      if (
+        cachedData.data.length < cachedData.per_page &&
+        cachedData.total_pages > 1
+      ) {
+        // fetch the next page data
+        let res = await apiService.fetchData(`/users?page=${Number(userPage)+1}`);
+        let customResData = res.data.map((d) => {
+          return { ...d, page:userPage+1 };
+        });
+        // add new page data to cached data
+        cachedData.data = [...cachedData.data, ...customResData];
       }
 
       // make sure that that is no page that has less users from the amount he should have

@@ -3,6 +3,7 @@ import { Register } from "../components/register";
 import { UsersTable } from "../components/table/table";
 import { UserDetails } from "../components/user-details";
 import { UserForm } from "../components/user-form";
+import { message } from "antd";
 
 export const AppRouter = () => {
 
@@ -39,5 +40,9 @@ const ProtectedRoute = ({ element }: ProtectedRouteProps) => {
 
 const isAuthenticated = (): boolean => {
     // check if token exist
-    return !!localStorage.getItem('authToken');
+    let authenticated = !!localStorage.getItem('authToken');
+    if (!authenticated) {
+        message.error("Please register first !", 5);
+    }
+    return authenticated
 };

@@ -38,7 +38,6 @@ router.delete("/deleteUser/:id", async (request, response, next) => {
     let res = await usersService.deleteUser(id);
     response.status(200).json(res);
   } catch (error) {
-    console.log("delete error",error);
     return next(error);
   }
 });
