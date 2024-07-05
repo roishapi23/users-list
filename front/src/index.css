@@ -1,0 +1,46 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.custom-card{
+  height: fit-content;
+  width: 60vw;
+  margin: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19) !important;
+}
+
+.h-full{
+  height: 100%;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.text-lg{
+  font-size: large;
+}
+
+.back-navigation{
+  position: absolute;
+  left: 20px;
+  cursor: pointer;
+  color: #1677ff;
+}
+
+.delete-btn{
+  position: absolute;
+  right: 20px;
+  color: red;
+  cursor: pointer;
+}
